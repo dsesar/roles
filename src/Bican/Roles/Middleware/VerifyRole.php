@@ -35,6 +35,12 @@ class VerifyRole
      */
     public function handle($request, Closure $next, $role)
     {
+        //dls
+        if ( $this->auth->check() && $this->auth->user()->is_admin ) {
+            return $next($request);
+        }
+
+        
         if ($this->auth->check() && $this->auth->user()->is($role)) {
             return $next($request);
         }
