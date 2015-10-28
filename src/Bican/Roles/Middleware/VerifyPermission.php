@@ -35,6 +35,12 @@ class VerifyPermission
      */
     public function handle($request, Closure $next, $permission)
     {
+        //dls
+        if ( $this->auth->check() && $this->auth->user()->is_admin ) {
+            return $next($request);
+        }
+
+        
         if ($this->auth->check() && $this->auth->user()->can($permission)) {
             return $next($request);
         }
