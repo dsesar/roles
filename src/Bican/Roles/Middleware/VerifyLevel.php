@@ -35,7 +35,7 @@ class VerifyLevel
      */
     public function handle($request, Closure $next, $level)
     {
-        //dls
+        //dls 
         if ( $this->auth->check() && $this->auth->user()->is_admin ) {
             return $next($request);
         }
